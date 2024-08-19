@@ -62,11 +62,11 @@ export async function POST(req: Request) {
     try {
       await createOrUpdateUser(
         id,
-        first_name,
-        last_name,
-        image_url,
-        email_addresses,
-        username
+        first_name as string,
+        last_name as string,
+        image_url as string,
+        email_addresses as any,
+        username as string
       );
       return new Response('User is created or updated', {
         status: 200,
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
   if (eventType === 'user.deleted') {
     const { id } = evt?.data;
     try {
-      await deleteUser(id);
+      await deleteUser(id as string);
       return new Response('User is deleted', {
         status: 200,
       });
